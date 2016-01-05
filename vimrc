@@ -1,4 +1,4 @@
-yntax enable
+syntax enable
 set background=dark
 colorscheme hybrid
 set expandtab
