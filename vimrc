@@ -1,6 +1,6 @@
 syntax enable
 set background=dark
-colorscheme hybrid
+
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -8,6 +8,7 @@ set softtabstop=2
 set autoindent
 set smartindent
 set nu
+
 let g:solarized_termcolors=256
 if has('vim_starting')
   if &compatible
@@ -34,6 +35,7 @@ NeoBundle 'soramugi/auto-ctags.vim'
 NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'kmnk/vim-unite-giti'
+NeoBundle 'w0ng/vim-hybrid'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -103,3 +105,5 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+colorscheme hybrid
