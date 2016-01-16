@@ -1,4 +1,23 @@
+alias ls='ls -Glrt'
+alias gs='git status'
+alias ba='git branch -a'
+
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(\history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N peco-select-history
 bindkey '^r' peco-select-history
+
 # C-q -> find
 function peco-find-file() {
     if git rev-parse 2> /dev/null; then
@@ -17,6 +36,7 @@ function peco-find-file() {
 }
 zle -N peco-find-file
 bindkey '^f' peco-find-file
+
 function peco-git-diff() {
   git rev-parse --git-dir >/dev/null 2>&1
   if [[ $? == 0 ]]; then
@@ -26,3 +46,5 @@ function peco-git-diff() {
     fi
   fi
 }
+zle -N peco-git-diff
+bindkey '^p' peco-git-diff
