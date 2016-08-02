@@ -1,6 +1,9 @@
 mkdir -p ~/.vim/bundle
+chown vagrant:vagrant ~/.vim
+chown vagrant:vagrant ~/.vim/bundle
 git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 
-ln -s zshrc ~/.zshrc
-ln -s vimrc ~/.vimrc
-
+cp zshrc ~/.zshrc
+cp vimrc ~/.vimrc
+chown vagrant:vagrant ~/.zshrc
+chown vagrant:vagrant ~/.vimrc
