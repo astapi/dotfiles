@@ -1,6 +1,6 @@
 syntax enable
-set background=dark
 
+set background=dark
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -8,6 +8,9 @@ set softtabstop=2
 set autoindent
 set smartindent
 set nu
+
+set encoding=utf-8
+" set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
 
 let g:solarized_termcolors=256
 if has('vim_starting')
@@ -43,6 +46,8 @@ NeoBundle 'Shougo/vimproc.vim', {
 \ }
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'kmnk/vim-unite-giti'
+NeoBundle 'slim-template/vim-slim'
+NeoBundle 'elixir-lang/vim-elixir'
 NeoBundle 'w0ng/vim-hybrid'
 
 " You can specify revision/branch/tag.

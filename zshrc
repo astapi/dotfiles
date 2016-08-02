@@ -1,19 +1,26 @@
-alias ls='ls -Glrt'
-alias gs='git status'
-alias ba='git branch -a'
+source ~/.zsh/completion/git-prompt.zsh
 
+export EDITOR=vim
+
+alias ba='git branch -a'
+alias gc='git checkout'
+alias gs='git status'
+alias gpo='git push origin'
+alias ls='ls --color=auto'
+
+# peco kei
+alias -g B='`git branch | peco | sed -e "s/^\*[ ]*//g"`'
+# C-r -> peco
 function peco-select-history() {
-    local tac
+    typeset tac
     if which tac > /dev/null; then
-        tac="tac"
+        tac=tac
     else
-        tac="tail -r"
+        tac='tail -r'
     fi
-    BUFFER=$(\history -n 1 | \
-        eval $tac | \
-        peco --query "$LBUFFER")
+    BUFFER=$(fc -l -n 1 | eval $tac | peco --query "$LBUFFER")
     CURSOR=$#BUFFER
-    zle clear-screen
+    zle redisplay
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history
@@ -36,7 +43,6 @@ function peco-find-file() {
 }
 zle -N peco-find-file
 bindkey '^f' peco-find-file
-
 function peco-git-diff() {
   git rev-parse --git-dir >/dev/null 2>&1
   if [[ $? == 0 ]]; then
@@ -46,5 +52,14 @@ function peco-git-diff() {
     fi
   fi
 }
-zle -N peco-git-diff
-bindkey '^p' peco-git-diff
+export GOROOT=/usr/local/opt/go/libexec
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+
+export RBENV_ROOT="/usr/local/rbenv"
+export PATH="${RBENV_ROOT}/bin:${PATH}"
+eval "$(rbenv init -)"
+
+export PATH=/opt/elixir/bin:$PATH
+export PATH=/opt/elixir/bin:$PATH
